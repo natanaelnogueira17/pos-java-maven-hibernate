@@ -56,4 +56,8 @@ public class DaoGeneric <E>{
 		transaction.commit();
 		return retorno;
 	}
+	
+	public EntityManager getEntitymanager() {
+		return entityManager;
+	}
 }
