@@ -85,5 +85,19 @@ public class TesteHibernate {
 			System.out.println("////////////////////////////////////////////////");
 		}
 	}
+	
+	
+	@Test
+	public void testeQueryListMaxResult() {
+		DaoGeneric<UsuarioPessoa> usuarioDao = new DaoGeneric<>();
+		List <UsuarioPessoa> list = usuarioDao.getEntitymanager()
+				.createQuery("from UsuarioPessoa order by id")
+				.setMaxResults(2)
+				.getResultList();
+		for (UsuarioPessoa usuarioPessoa : list) {
+			System.out.println(usuarioPessoa);
+			System.out.println("////////////////////////////////////////////////");
+		}
+	}
 
 }
