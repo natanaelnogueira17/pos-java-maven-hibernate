@@ -5,6 +5,7 @@ import java.util.List;
 import org.junit.Test;
 
 import posjavamavenhibernate.dao.DaoGeneric;
+import posjavamavenhibernate.model.TelefoneUser;
 import posjavamavenhibernate.model.UsuarioPessoa;
 
 public class TesteHibernate {
@@ -14,7 +15,7 @@ public class TesteHibernate {
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 		UsuarioPessoa pessoa = new UsuarioPessoa();
 		pessoa.setLogin("teste4");
-		pessoa.setNome("ernani ");
+		pessoa.setNome("fabio ");
 		pessoa.setSenha("1234");
 		pessoa.setSobrenome("santos");
 		pessoa.setIdade(20L);
@@ -136,8 +137,36 @@ public class TesteHibernate {
 		for (UsuarioPessoa usuarioPessoa : list) {
 			System.out.println(usuarioPessoa);
 			System.out.println("//////////////////////////////////////////////////////");
-		}
+		}	
+		
+		
 
 	}
-
+	@Test
+	public void testeGravarTelefone() {
+		DaoGeneric daoGeneric = new DaoGeneric();
+		UsuarioPessoa pessoa = (UsuarioPessoa) daoGeneric.pesquisar(2L, UsuarioPessoa.class);
+		
+		TelefoneUser telefone = new TelefoneUser();
+		telefone.setNumero("85 32286314");
+		telefone.setPessoa(pessoa);
+		telefone.setTipo("casa");
+		
+		daoGeneric.salvar(telefone);
+		
+		System.out.println(telefone);
+	}
+	
+	@Test
+	public void testeConsultaTelefone() {
+		DaoGeneric daoGeneric = new DaoGeneric();
+		UsuarioPessoa pessoa = (UsuarioPessoa) daoGeneric.pesquisar(2L, UsuarioPessoa.class);
+		for (TelefoneUser telefone : pessoa.getTelefoneusers()) {
+			System.out.println(telefone.getNumero());
+			System.out.println(telefone.getTipo());
+			System.out.println(telefone.getPessoa().getNome());
+			System.out.println("////////////////////////////////////////////");
+		}
+		
+	}
 }

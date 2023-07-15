@@ -1,9 +1,13 @@
 package posjavamavenhibernate.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
@@ -21,6 +25,9 @@ public class UsuarioPessoa {
 	private String login;
 	private String senha;
 	private Long idade;
+	
+	@OneToMany(mappedBy = "pessoa",fetch = FetchType.EAGER)
+	private List<TelefoneUser> telefoneusers;
 
 	public Long getId() {
 		return id;
@@ -68,6 +75,16 @@ public class UsuarioPessoa {
 
 	public Long getIdade() {
 		return idade;
+	}
+	
+	
+
+	public List<TelefoneUser> getTelefoneusers() {
+		return telefoneusers;
+	}
+
+	public void setTelefoneusers(List<TelefoneUser> telefoneusers) {
+		this.telefoneusers = telefoneusers;
 	}
 
 	@Override
