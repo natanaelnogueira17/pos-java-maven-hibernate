@@ -17,6 +17,7 @@ public class TesteHibernate {
 		pessoa.setNome("ernani ");
 		pessoa.setSenha("1234");
 		pessoa.setSobrenome("santos");
+		pessoa.setIdade(20L);
 		daoGeneric.salvar(pessoa);
 		System.out.println(pessoa);
 
@@ -116,6 +117,14 @@ public class TesteHibernate {
 		System.out.println("terminou aqui  testeQueryListParameter");
 
 
+	}
+	
+	@Test
+	public void testeQuerySomaIdade() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		Long somaIdade = (Long) daoGeneric.getEntitymanager().createQuery("select sum(u.idade) from UsuarioPessoa u").getSingleResult();
+		System.out.println("Soma de todas as idades é : " +somaIdade);
 	}
 
 }
