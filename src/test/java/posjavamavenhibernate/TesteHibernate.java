@@ -14,7 +14,7 @@ public class TesteHibernate {
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 		UsuarioPessoa pessoa = new UsuarioPessoa();
 		pessoa.setLogin("teste4");
-		pessoa.setNome("natanael ");
+		pessoa.setNome("ernani ");
 		pessoa.setSenha("1234");
 		pessoa.setSobrenome("santos");
 		daoGeneric.salvar(pessoa);
@@ -30,7 +30,7 @@ public class TesteHibernate {
 
 		pessoa = daoGeneric.pesquisar(pessoa);
 
-		System.out.println(pessoa);
+		//System.out.println(pessoa);
 
 	}
 
@@ -39,7 +39,7 @@ public class TesteHibernate {
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 		UsuarioPessoa pessoa = daoGeneric.pesquisar(3L, UsuarioPessoa.class);
 
-		System.out.println(pessoa);
+		//System.out.println(pessoa);
 	}
 
 	@Test
@@ -50,7 +50,7 @@ public class TesteHibernate {
 		pessoa.setSobrenome("testeUpdate");
 		pessoa.setLogin("teste3U");
 		pessoa = daoGeneric.updateMerge(pessoa);
-		System.out.println(pessoa);
+		//System.out.println(pessoa);
 	}
 	
 	@Test
@@ -59,9 +59,7 @@ public class TesteHibernate {
 		UsuarioPessoa pessoa = pessoaDao.pesquisar(8L, UsuarioPessoa.class);
 		pessoaDao.delete(pessoa);
 		UsuarioPessoa pessoa1 = pessoaDao.pesquisar(8L, UsuarioPessoa.class);
-		if(pessoa1 == null) {
-			System.out.println("deletado com sucesso");
-		}
+		
 		
 
 	}
@@ -73,6 +71,7 @@ public class TesteHibernate {
 			System.out.println(pessoa);
 			System.out.println("----------------------------------------------------------------");
 		}
+		System.out.println("terminou aqui consultar");
 		
 	}
 	
@@ -84,6 +83,8 @@ public class TesteHibernate {
 			System.out.println(usuarioPessoa);
 			System.out.println("////////////////////////////////////////////////");
 		}
+		System.out.println("terminou aqui testeQueryList");
+
 	}
 	
 	
@@ -98,6 +99,23 @@ public class TesteHibernate {
 			System.out.println(usuarioPessoa);
 			System.out.println("////////////////////////////////////////////////");
 		}
+		System.out.println("terminou aqui testeQueryListMaxResult ");
+
+	}
+	
+	@Test
+	public void testeQueryListParameter() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		List<UsuarioPessoa>list = daoGeneric.getEntitymanager().createQuery("from UsuarioPessoa where sobrenome = :sobrenome")
+				.setParameter("sobrenome", "santos").getResultList();
+		for (UsuarioPessoa usuarioPessoa : list) {
+			System.out.println(usuarioPessoa);
+			System.out.println("///////////////////////////////////");
+			
+		}
+		System.out.println("terminou aqui  testeQueryListParameter");
+
+
 	}
 
 }

@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity 
+@Entity
 public class UsuarioPessoa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,8 +14,6 @@ public class UsuarioPessoa {
 	private String sobrenome;
 	private String login;
 	private String senha;
-	
-	
 
 	public Long getId() {
 		return id;
@@ -62,8 +60,5 @@ public class UsuarioPessoa {
 		return "UsuarioPessoa [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", login=" + login
 				+ ", senha=" + senha + "]";
 	}
-	
-	
-	
 
 }
