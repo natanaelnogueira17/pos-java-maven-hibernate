@@ -23,8 +23,7 @@ public class DaoGeneric <E>{
 		E e = (E) entityManager.find(entidade.getClass(),id);
 		return e;
 		
-	}
-	
+	}	
 
 	
 	public E pesquisar(Long id, Class<E> entidade) {
@@ -48,5 +47,13 @@ public class DaoGeneric <E>{
 		entityManager.createNativeQuery("delete from " +entidade.getClass().getSimpleName().toLowerCase()+" where id ="+id).executeUpdate();
 		transaction.commit();
 
+	}
+	
+	public List<E>listar(Class<E>entidade){
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		List<E>retorno =  entityManager.createQuery("from "+entidade.getName()).getResultList();
+		transaction.commit();
+		return retorno;
 	}
 }

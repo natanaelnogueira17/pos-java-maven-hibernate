@@ -1,5 +1,7 @@
 package posjavamavenhibernate;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import posjavamavenhibernate.dao.DaoGeneric;
@@ -62,6 +64,16 @@ public class TesteHibernate {
 		}
 		
 
+	}
+	@Test
+	public void consultar() {
+		DaoGeneric<UsuarioPessoa> usuarioDao = new DaoGeneric<UsuarioPessoa>();
+		List<UsuarioPessoa> list = usuarioDao.listar(UsuarioPessoa.class);
+		for (UsuarioPessoa pessoa : list) {
+			System.out.println(pessoa);
+			System.out.println("----------------------------------------------------------------");
+		}
+		
 	}
 
 }
