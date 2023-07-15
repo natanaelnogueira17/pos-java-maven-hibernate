@@ -5,7 +5,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 @Entity
+@NamedQueries({
+	@NamedQuery(name="UsuarioPessoa.todos", query = "select u from  UsuarioPessoa u")
+})
 public class UsuarioPessoa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
